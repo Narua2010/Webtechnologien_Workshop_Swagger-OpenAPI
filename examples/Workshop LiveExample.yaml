@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: Webtechnologien - Workshop
+  description: Beispiel für den Workshop über Swagger und OpenAPI im Modul Webtechnologien
+  contact:
+    name: Patrick Albus
+    url: https://github.com/Narua2010
+    email: patrick.albus@smail.th-koeln.de
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 1.0.0
+servers:
+  - url: https://localhost:80/api
+    description: Dev Server mit Port 80
+  - url: https://localhost:8080/{version}/api
+    description: Dev Server mit Port 8080 und Versions Variable
+    variables:
+      version:
+        enum:
+          - rc
+          - v1
+        default: v1
+paths:
+  /artefacts:
+    get:
+      operationId: GetArtefacts
+      summary: Example for GET request without parameters
+      tags:
+        - Artefacts
+      description: This API returns a list of artefacts.
+      externalDocs:
+        description: Externe Dokumentation
+        url: https://th-koeln.github.io/mi-master-wtw/web-technologien/
+      responses:
+        '200':
+          description: List of artefacts
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArtefactDTO'
+        '500':
+          $ref: '#/components/responses/errorResponse'
+    post:
+      operationId: AddArtefact
+      summary: Example for POST request
+      tags:
+        - Artefacts
+      requestBody:
+        description: Data of new artefact
+        required: true
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArtefactDTO'
+      responses:
+        '201':
+          description: Added artefact
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtefactDTO'
+          headers:
+            Locatoin:
+              description: URL where to get details of the created artefact
+              schema:
+                type: string
+          links:
+            artefact:
+              operationId: GetArtefactByObjectId
+              parameters:
+                objectId: response.body#/objectId
+        '400':
+          description: Invalid artefact data in request body
+          content:
+            text/html:
+              schema:
+                type: string
+                description: Cause of the error
+                example: Mandatory member 'location' is missing.
+        '500':
+          $ref: '#/components/responses/errorResponse'
+  '/artefacts/{objectId}':
+    get:
+      operationId: GetArtefactByObjectId
+      summary: Example for GET request with path paramenter.
+      tags:
+        - Artefacts
+      parameters:
+        - name: objectId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      description: This API returns an artefact.
+      externalDocs:
+        description: Externe Dokumentation
+        url: https://th-koeln.github.io/mi-master-wtw/web-technologien/
+      responses:
+        '200':
+          description: Artefact
+          content: 
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ArtefactDTO'
+        '500':
+          $ref: '#/components/responses/errorResponse'
+components:
+  responses:
+    errorResponse:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/errorResponse"
+  schemas:
+    ArtefactDTO:
+      description: Artefact Data Transform Object
+      type: object
+      required: 
+        - objectId
+      properties:
+        objectId:
+          type: string
+          nullable: false
+          description: Unique ID of Artefact
+    errorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Description of the error
+      
+          
+    
