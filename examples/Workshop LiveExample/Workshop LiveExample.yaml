@@ -2,6 +2,7 @@ openapi: 3.0.1
 info:
   title: Webtechnologien - Workshop
   description: Beispiel für den Workshop über Swagger und OpenAPI im Modul Webtechnologien
+  termsOfService: https://github.com/Narua2010
   contact:
     name: Patrick Albus
     url: https://github.com/Narua2010
