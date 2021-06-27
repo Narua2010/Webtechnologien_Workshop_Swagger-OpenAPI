@@ -23,7 +23,7 @@ Raum: [Zoom](https://th-koeln.zoom.us/j/89337586017?pwd=L2hBbmczaWJ6TStkUjMxTHlR
 
 ---
 
-Diese Repository beinhaltete die Materialien für den [Workshop "OpenAPI und Swagger"](https://th-koeln.github.io/mi-master-wtw/workshops/2021/openapi-und-swagger/index/) für den Kurs Weaving the Web im Master Medieninformatik an der TH Köln.
+Diese Repository beinhaltete die Materialien für den [Workshop "OpenAPI und Swagger"](https://th-koeln.github.io/mi-master-wtw/workshops/2021/openapi-und-swagger/index/) für den Kurs Webtechnologien im Master Medieninformatik an der TH Köln.
 
 --- 
 
