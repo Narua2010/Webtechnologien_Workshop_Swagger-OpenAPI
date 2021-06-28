@@ -8,8 +8,10 @@ Erstellen Sie eine API-Definition mithilfe der OpenAPI Specification v3.0.1. Die
 - [ ] Info
     - [ ] Title
     - [ ] Description
+    - [ ] Terms of Service
     - [ ] Contact
-    - [ ] Servers
+    - [ ] Version
+- [ ] Servers
 - [ ] Paths
     - [ ] Einen Pfad nach Wahl. 
 - [ ] Components
